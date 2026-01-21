@@ -35,34 +35,6 @@ python pull_transcript_main.py
 Downloads transcripts after a meeting ends (transcripts may take 5-15 minutes to become available).
 
 ---
-
-## Folder Structure
-
-```
-meet-creation/
-├── auth.py                    # 🔐 Main: OAuth authentication & token management
-├── create_meeting_main.py     # 📅 Main: Create Teams meetings  
-├── pull_transcript_main.py    # 📝 Main: Download transcripts
-│
-├── examples/                  # Advanced/experimental features
-│   ├── webhook_handler.py    # Flask webhook for transcript notifications
-│   ├── transcript_poller.py  # Poll for transcripts automatically
-│   └── subscription_manager.py # Setup webhook subscriptions
-│
-├── utils/                     # Diagnostic & debug tools
-│   ├── check_permissions.py  # Verify API permissions
-│   ├── diagnosis.py          # Diagnostic information
-│   ├── subscription_review.py # Review active subscriptions
-│   └── debug.py              # Advanced debugging
-│
-├── archive/                   # Archived experimental code
-│   └── v2-experiments/       # Version 2 experiments
-│
-└── transcripts/               # Downloaded transcripts (gitignored)
-```
-
----
-
 ## Main Scripts
 
 ### `auth.py`
@@ -359,16 +331,4 @@ The `archive/` folder contains older experimental code:
 5. **Experiment safely**: Play with `examples/` and `utils/` scripts to learn more
 
 ---
-
-## Need Help?
-
-- Check the main README: `../README.md`
-- Review Azure permissions: `python utils/check_permissions.py`
-- Run diagnostics: `python utils/diagnosis.py`
-- See troubleshooting section above
-
----
-
-**Ready to create meetings!** 🚀
-
 Start with `python auth.py` and follow the quick start guide above.

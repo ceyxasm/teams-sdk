@@ -122,39 +122,6 @@ python pull_transcript_main.py
 
 Enter the meeting ID when prompted. Transcripts will be saved to the `transcripts/` folder in VTT format.
 
-## Project Structure
-
-```
-teams-sdk/
-├── meet-creation/                    # Main scripts (see meet-creation/README.md)
-│   ├── auth.py                      # 🔐 Authentication & token management
-│   ├── create_meeting_main.py       # 📅 Create Teams meetings
-│   ├── pull_transcript_main.py      # 📝 Download transcripts
-│   ├── examples/                    # Advanced usage examples
-│   │   ├── webhook_handler.py       # Flask webhook server
-│   │   ├── transcript_poller.py     # Auto-polling for transcripts
-│   │   └── subscription_manager.py  # Webhook subscription setup
-│   ├── utils/                       # Diagnostic & debug tools
-│   │   ├── check_permissions.py     # Verify API permissions
-│   │   ├── diagnosis.py             # System diagnostics
-│   │   ├── subscription_review.py   # Review subscriptions
-│   │   └── debug.py                 # Advanced debugging
-│   ├── archive/                     # Archived experiments
-│   │   └── v2-experiments/          # Version 2 code
-│   ├── transcripts/                 # Downloaded transcripts (gitignored)
-│   └── README.md                    # Detailed usage guide
-│
-├── teams_meeting_creation_context/  # Reusable library modules
-│   ├── config.py                    # Configuration management
-│   ├── team_api.py                  # API wrappers
-│   ├── team_auth.py                 # Authentication helpers
-│   └── example_flow.py              # Usage examples
-│
-├── .gitignore                       # Git ignore rules
-├── env.example                      # Environment template
-├── requirements.txt                 # Python dependencies
-└── README.md                        # This file
-```
 
 ## Folder Organization
 
@@ -189,59 +156,6 @@ Older experimental code kept for reference (may not work with current setup)
 ### `teams_meeting_creation_context/` - Reusable Modules
 
 Library modules for integration into other projects
-
-## Security Notes
-
-⚠️ **Important Security Practices**:
-
-1. **Never commit secrets**: The `.gitignore` is configured to exclude:
-   - `.env` files
-   - `*_tokens.json` files
-   - `teams_tokens.json`
-
-2. **Token Management**:
-   - Access tokens expire after ~1 hour
-   - Refresh tokens are automatically used to get new access tokens
-   - Tokens are stored locally in `teams_tokens.json`
-
-3. **Production Deployment**:
-   - Use Azure Key Vault or similar for secrets
-   - Implement proper token encryption at rest
-   - Use secure webhook endpoints (HTTPS only)
-
-## Troubleshooting
-
-### "teams_tokens.json not found"
-Run `python save_at.py` to authenticate first.
-
-### "Failed to refresh token"
-Your refresh token may have expired. Re-run `python save_at.py` to re-authenticate.
-
-### "No transcripts found"
-Transcripts can take 5-15 minutes after a meeting ends to become available. Wait and try again.
-
-### "Failed to create meeting" (403 Forbidden)
-Check that your Azure app has the correct permissions and admin consent has been granted.
-
-## API Scopes
-
-- `OnlineMeetings.ReadWrite`: Create and manage online meetings
-- `OnlineMeetingTranscript.Read.All`: Read meeting transcripts
-- `User.Read`: Read user profile information
-- `offline_access`: Get refresh tokens for long-term access
-
-## Development
-
-### Adding New Features
-
-1. Create new scripts in `meet-creation/` for experimentation
-2. Move stable code to `meet-creation/fin_sol/`
-3. Extract reusable components to `teams_meeting_creation_context/`
-
-### Testing
-
-Always test with a non-production Azure app registration during development.
-
 ## Contributing
 
 This is an experimental/personal project. Feel free to fork and adapt for your needs.
